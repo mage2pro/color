@@ -1,0 +1,13 @@
+<?xml version='1.0'?>
+<config
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd"
+>
+<!-- 2019-08-21 -->
+	<event name='catalog_product_save_before'>
+		<observer
+			instance='Dfe\Color\Observer\ProductSaveBefore'
+			name='Dfe\Color\Observer\ProductSaveBefore'
+		/>
+	</event>
+</config>
