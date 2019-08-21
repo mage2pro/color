@@ -1,6 +1,9 @@
 A product image color categorization module for Magento 2.  
 It uses the Google's [Cloud Vision API](https://cloud.google.com/vision) (based on deep learning) to [detect the dominant color](https://cloud.google.com/vision/docs/detecting-properties) of a product's primary image, and then it automatically assigns the proper [color swatch](https://docs.magento.com/m2/ce/user_guide/catalog/swatches.html) to the product.
 
+## How to buy
+You can buy it with PayPal [here](https://mage2.pro/t/6009).  
+
 ## How to install
 ```
 bin/magento maintenance:enable
