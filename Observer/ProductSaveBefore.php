@@ -6,7 +6,6 @@ use Google\Cloud\Vision\V1\ColorInfo;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient as Annotator;
 use Google\Type\Color;
 use Magento\Catalog\Model\Product as P;
-use Magento\Catalog\Model\ResourceModel\Eav\Attribute as Att;
 use Magento\Framework\Event\Observer as O;
 use Magento\Framework\Event\ObserverInterface;
 // 2019-08-21
