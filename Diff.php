@@ -4,6 +4,7 @@ namespace Dfe\Color;
 final class Diff {
 	/**
 	 * 2019-08-22
+	 * @used-by \Dfe\Color\Image::dist()
 	 * @param int[] $rgb1
 	 * @param int[] $rgb2
 	 * @return float

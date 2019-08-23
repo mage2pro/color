@@ -21,6 +21,10 @@ class UpgradeSchema extends \Df\Framework\Upgrade\Schema {
 	/**
 	 * 2019-08-23
 	 * @used-by _process()
+	 * @used-by \Dfe\Color\Image::palette()
+	 * @used-by \Dfe\Color\Plugin\Swatches\Block\Adminhtml\Attribute\Edit\Options\Visual::afterGetJsonConfig()
+	 * @used-by \Dfe\Color\Plugin\Swatches\Model\Swatch::beforeBeforeSave()
+	 * @used-by vendor/mage2pro/color/view/adminhtml/templates/catalog/product/attribute/visual.phtml
 	 * @var string
 	 */
 	const F = 'mage2pro_color';

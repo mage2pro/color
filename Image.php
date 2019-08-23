@@ -10,6 +10,7 @@ use Google\Type\Color;
 final class Image {
 	/**
 	 * 2019-08-22
+	 * @used-by vendor/mage2pro/color/view/frontend/templates/index.phtml
 	 * @return array(string => string)
 	 */
 	function labels() {return /*array_filter*/(df_map_kr($this->probabilities(), function($k, $v) {return [
@@ -19,6 +20,7 @@ final class Image {
 	/**
 	 * 2019-08-22
 	 * @used-by labels()
+	 * @used-by \Dfe\Color\Observer\ProductSaveBefore::execute()
 	 * @return array(int => float)
 	 */
 	function probabilities() {return dfc($this, function() {
@@ -26,10 +28,10 @@ final class Image {
 		// 2019-08-23
 		// Sometimes (rarely) Cloud Vision API wrongly considers a white background as the primary color.
 		// So I filter out all colors close to white.
-		$cia = array_filter($ciaAll, function(ColorInfo $ci) {
+		$cia = array_values(array_filter($ciaAll, function(ColorInfo $ci) {
 			$co = $ci->getColor(); /** @var Color $co */
 			return 250 * 3 > $co->getRed() + $co->getGreen() + $co->getBlue();
-		}) ?: [$ciaAll[0]]; /** @var ColorInfo[] $cia */
+		})) ?: [$ciaAll[0]]; /** @var ColorInfo[] $cia */
 		return /*self::softmaxNeg*/(df_sort(df_map(self::palette(), function(array $cc) use($cia) {return
 			self::dist($cia, $cc)
 		;})));
@@ -37,6 +39,8 @@ final class Image {
 
 	/**
 	 * 2019-08-22
+	 * @used-by \Dfe\Color\Observer\ProductSaveBefore::execute()
+	 * @used-by vendor/mage2pro/color/view/frontend/templates/index.phtml
 	 * @param string $path
 	 */
 	function __construct($path) {
@@ -44,7 +48,7 @@ final class Image {
 			// 2019-08-21
 			// https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/v0.107.1/guides/authentication
 			// https://github.com/googleapis/google-auth-library-php/tree/v1.5.2#application-default-credentials
-			putenv('GOOGLE_APPLICATION_CREDENTIALS=' . dirname(BP) . '/doc/credentials.json');
+			putenv('GOOGLE_APPLICATION_CREDENTIALS=' . df_fs_etc('google-app-credentials.json'));
 		});
 		$this->_path = $path;
 	}
@@ -91,7 +95,7 @@ final class Image {
 	 * @return float
 	 */
 	private static function dist(array $cia, array $cc) {
-		$ci = $cia[0]; /** @var ColorInfo $ci */
+		$ci = df_first($cia); /** @var ColorInfo $ci */
 		return min(df_map($cc, function($tone) use($ci) {
 			$co = $ci->getColor(); /** @var Color $co */
 			return Diff::p($tone, [$co->getRed(), $co->getGreen(), $co->getBlue()]);
