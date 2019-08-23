@@ -1,0 +1,13 @@
+<?xml version='1.0'?>
+<config
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='urn:magento:framework:ObjectManager/etc/config.xsd'
+>
+<!-- 2019-08-23 -->
+	<type name='Magento\Swatches\Block\Adminhtml\Attribute\Edit\Options\AbstractSwatch'>
+		<plugin
+			name='Dfe\Color\Plugin\Swatches\Block\Adminhtml\Attribute\Edit\Options\AbstractSwatch'
+			type='Dfe\Color\Plugin\Swatches\Block\Adminhtml\Attribute\Edit\Options\AbstractSwatch'
+		/>
+	</type>
+</config>
