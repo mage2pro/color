@@ -4,10 +4,21 @@
 	xsi:noNamespaceSchemaLocation='urn:magento:framework:ObjectManager/etc/config.xsd'
 >
 <!-- 2019-08-23 -->
+	<type name='Magento\Catalog\Model\ResourceModel\Eav\Attribute'>
+		<plugin
+			name='Dfe\Color\Plugin\Catalog\Model\ResourceModel\Eav\Attribute'
+			type='Dfe\Color\Plugin\Catalog\Model\ResourceModel\Eav\Attribute'
+		/>
+	</type>
+<!-- 2019-08-23 -->
 	<type name='Magento\Swatches\Block\Adminhtml\Attribute\Edit\Options\Visual'>
 		<plugin
 			name='Dfe\Color\Plugin\Swatches\Block\Adminhtml\Attribute\Edit\Options\Visual'
 			type='Dfe\Color\Plugin\Swatches\Block\Adminhtml\Attribute\Edit\Options\Visual'
 		/>
+	</type>
+<!-- 2019-08-23 -->
+	<type name='Magento\Swatches\Model\Swatch'>
+		<plugin name='Dfe\Color\Plugin\Swatches\Model\Swatch' type='Dfe\Color\Plugin\Swatches\Model\Swatch'/>
 	</type>
 </config>

@@ -90,8 +90,8 @@ $stores = $block->getStoresSortedBySortOrder();
 				<?php for ($i = 0; $i < P::COUNT; $i++) { ?>
 					<div>
 						<input
-							id="swatch_visual_value_a<?= $i ?>_<%- data.id %>"
-							name="swatchvisual[value_a<?= $i ?>][<%- data.id %>]"
+							id="swatch_visual_value_<?= S::F ?>_<%- data.id %>_<?= $i ?>"
+							name="swatchvisual[<?= S::F ?>][<%- data.id %>][<?= $i ?>]"
 							type="hidden"
 							value="<%- data.<?= S::F ?>[<?= $i ?>] %>"
 						/>
