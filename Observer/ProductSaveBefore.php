@@ -2,6 +2,7 @@
 namespace Dfe\Color\Observer;
 use Dfe\Color\Image;
 use Magento\Catalog\Model\Product as P;
+use Magento\Framework\App\Filesystem\DirectoryList as DL;
 use Magento\Framework\Event\Observer as O;
 use Magento\Framework\Event\ObserverInterface;
 // 2019-08-21
@@ -22,7 +23,7 @@ final class ProductSaveBefore implements ObserverInterface {
 			/** @var string $path */
 			$path = df_trim_text_right(df_path_n($p['image']), '.tmp');
 			if ($path !== df_path_n($p->getOrigData('image'))) {
-				$image = new Image(df_product_image_path_absolute($path)); /** @var Image $image */
+				$image = new Image(df_product_image_tmp_path_absolute($path)); /** @var Image $image */
 				$p['color'] = df_first_key($image->probabilities());
 			}
 		}
