@@ -91,75 +91,12 @@ final class Image {
 	 * @return float
 	 */
 	private static function dist(array $cia, array $cc) {
-		$r = 0;
-		$slice = 1;
-		if ($slice) {
-			$cia = array_slice($cia, 0, $slice);
-		}
-		$useTones = true;
-		if (!$useTones) {
-			$c = $cc[0];
-			foreach ($cia as $ci) { /** @var ColorInfo $ci */
-				$co = $ci->getColor(); /** @var Color $co */
-				$r +=
-					//$ci->getScore()
-					//* $ci->getPixelFraction() //* $ci->getPixelFraction()
-					Diff::p($c, [$co->getRed(), $co->getGreen(), $co->getBlue()])// / ($ci->getScore())
-					/// ($ci->getScore() * $ci->getPixelFraction())
-					//*
-					//self::distSimple($c, [$co->getRed(), $co->getGreen(), $co->getBlue()])
-					// self::distLum($c, [$co->getRed(), $co->getGreen(), $co->getBlue()])
-					/** 0.5 * (
-						self::distSimple($c, [$co->getRed(), $co->getGreen(), $co->getBlue()])
-						+ Diff::p($c, [$co->getRed(), $co->getGreen(), $co->getBlue()])
-					) */
-				;
-			}
-		}
-		else {
-			$tones = $cc;
-			$ci = $cia[0]; /** @var ColorInfo $ci */
-			$r = min(df_map($tones, function($tone) use($ci) {
-				$co = $ci->getColor(); /** @var Color $co */
-				return Diff::p($tone, [$co->getRed(), $co->getGreen(), $co->getBlue()]);
-			}));
-		}
-		return $r;
+		$ci = $cia[0]; /** @var ColorInfo $ci */
+		return min(df_map($cc, function($tone) use($ci) {
+			$co = $ci->getColor(); /** @var Color $co */
+			return Diff::p($tone, [$co->getRed(), $co->getGreen(), $co->getBlue()]);
+		}));
 	}
-
-	/**
-	 * 2019-08-21
-	 * @param int[] $a
-	 * @param int[] $b
-	 * @return int
-	 */
-	private static function distLum(array $a, array $b) {return abs(self::lum($a) - self::lum($b));}
-
-	/**
-	 * 2019-08-21
-	 * @param int[] $a
-	 * @param int[] $b
-	 * @return int
-	 */
-	private static function distSimple(array $a, array $b) {return
-		abs($a[0] - $b[0]) + abs($a[1] - $b[1]) + abs($a[2] - $b[2])
-	;}
-
-	/**
-	 * 2019-08-23
-	 * @used-by tones()
-	 * @param float $v
-	 * @return int
-	 */
-	private static function limit255($v) {return round(max(0, min(255, $v)));}
-
-	/**
-	 * 2019-08-21
-	 * @param int[] $a
-	 * @param int[] $b
-	 * @return int
-	 */
-	private static function lum(array $a) {return (int)(0.2126 * $a[0] + 0.7152 * $a[1] + 0.0722 * $a[2]);}
 
 	/**
 	 * 2019-08-22
@@ -214,31 +151,5 @@ final class Image {
 			$r = array_map(function ($v) use ($f) {return $v * $f;}, $a);
 		}
 		return $r;
-	}
-
-	/**
-	 * 2019-08-23
-	 * @used-by dist()
-	 * @param int[] $c
-	 * @param int $count
-	 * @return int[][]
-	 */
-	private static function tones($c, $count) {
-		$dNeg = [];
-		$dPos = [];
-		$rNeg = [];
-		$rPos = [];
-		for ($j = 0; $j < 3; $j++) {
-			// 2019-08-23 I use `$count + 1` because the last tone is just pure white or black, we do not need it.
-			$dNeg[$j] = $c[$j] / ($count + 1);
-			$dPos[$j] = (255 - $c[$j]) / ($count + 1);
-		}
-		for ($i = 0; $i < $count; $i++) {
-			for ($j = 0; $j < 3; $j++) {
-				$rNeg[$i][$j] = self::limit255($c[$j] - ($dNeg[$j] * $i + 1));
-				$rPos[$i][$j] = self::limit255($c[$j] + ($dPos[$j] * $i + 1));
-			}
-		}
-		return array_merge($rNeg, [$c], $rPos);
 	}
 }
