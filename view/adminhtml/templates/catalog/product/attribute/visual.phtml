@@ -89,16 +89,19 @@ $stores = $block->getStoresSortedBySortOrder();
 			<td class="swatches-visual-col col-default dfe-color <%- data.empty_class %>">
 				<?php for ($i = 0; $i < P::COUNT; $i++) { ?>
 					<div>
+<!-- 2019-08-23
+We can not use a deep array like ['mage2pro_color'][$i]
+because the template processor fails in this case on a new row. -->
 						<input
 							id="swatch_visual_value_<?= S::F ?>_<%- data.id %>_<?= $i ?>"
 							name="swatchvisual[<?= S::F ?>][<%- data.id %>][<?= $i ?>]"
 							type="hidden"
-							value="<%- data.<?= S::F ?>[<?= $i ?>] %>"
+							value="<%- data.<?= S::F . $i ?> %>"
 						/>
 						<div
 							class="swatch_window"
 							id="swatch_window_option_a<?= $i ?>_<%- data.id %>"
-							style="background: <%- data.<?= S::F ?>[<?= $i ?>] %>"
+							style="background: <%- data.<?= S::F . $i ?> %>"
 						></div>
 						<div
 							class="swatch_sub-menu_container"
