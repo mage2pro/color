@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\Color;
+use Dfe\Color\Setup\UpgradeSchema as Schema;
 use Google\Cloud\Vision\V1\AnnotateImageResponse as Res;
 use Google\Cloud\Vision\V1\ColorInfo;
 use Google\Cloud\Vision\V1\DominantColorsAnnotation as Dominant;
@@ -11,19 +12,27 @@ final class Image {
 	 * 2019-08-22
 	 * @return array(string => string)
 	 */
-	function labels() {return array_filter(df_map_kr($this->probabilities(), function($k, $v) {return [
+	function labels() {return /*array_filter*/(df_map_kr($this->probabilities(), function($k, $v) {return [
 		self::optsM()[$k], dff_eq0($v) ? 0 : dff_2f($v)
 	];}));}
 
 	/**
 	 * 2019-08-22
+	 * @used-by labels()
 	 * @return array(int => float)
 	 */
 	function probabilities() {return dfc($this, function() {
-		$cia = iterator_to_array($this->dominant()->getColors()); /** @var ColorInfo[] $cia */
-		return /*self::softmaxNeg*/(df_sort(array_map(
-			function(array $c) use($cia) {return self::dist($cia, $c);}, self::palette()
-		)));
+		$ciaAll = iterator_to_array($this->dominant()->getColors()); /** @var ColorInfo[] $ciaAll */
+		// 2019-08-23
+		// Sometimes (rarely) Cloud Vision API wrongly considers a white background as the primary color.
+		// So I filter out all colors close to white.
+		$cia = array_filter($ciaAll, function(ColorInfo $ci) {
+			$co = $ci->getColor(); /** @var Color $co */
+			return 250 * 3 > $co->getRed() + $co->getGreen() + $co->getBlue();
+		}) ?: [$ciaAll[0]]; /** @var ColorInfo[] $cia */
+		return /*self::softmaxNeg*/(df_sort(df_map(self::palette(), function(array $cc) use($cia) {return
+			self::dist($cia, $cc)
+		;})));
 	});}
 
 	/**
@@ -78,10 +87,10 @@ final class Image {
 	 * 2019-08-21
 	 * @used-by probabilities()
 	 * @param ColorInfo[] $cia
-	 * @param int[] $c
+	 * @param int[][] $cc
 	 * @return float
 	 */
-	private static function dist(array $cia, array $c) {
+	private static function dist(array $cia, array $cc) {
 		$r = 0;
 		$slice = 1;
 		if ($slice) {
@@ -89,6 +98,7 @@ final class Image {
 		}
 		$useTones = true;
 		if (!$useTones) {
+			$c = $cc[0];
 			foreach ($cia as $ci) { /** @var ColorInfo $ci */
 				$co = $ci->getColor(); /** @var Color $co */
 				$r +=
@@ -107,7 +117,7 @@ final class Image {
 			}
 		}
 		else {
-			$tones = self::tones($c, 10); /** @var int[][] $tones */
+			$tones = $cc;
 			$ci = $cia[0]; /** @var ColorInfo $ci */
 			$r = min(df_map($tones, function($tone) use($ci) {
 				$co = $ci->getColor(); /** @var Color $co */
@@ -172,13 +182,21 @@ final class Image {
 
 	/**
 	 * 2019-08-22
-	 * @used-by optsM()
+	 * @used-by probabilities()
 	 * @return array(array(string => int|string))
 	 */
-	private static function palette() {return dfcf(function() {return array_map('df_hex2rgb', array_column(
-		df_swatches_h()->getSwatchesByOptionsId(df_int(array_column(self::opts(), 'value')))
-		,'value', 'option_id'
-	));});}
+	private static function palette() {return dfcf(function() {
+		/** @var array(int => array(string => string)) $d */
+		$d = df_swatches_h()->getSwatchesByOptionsId(df_int(array_column(self::opts(), 'value')));
+		$primary = array_column($d, 'value', 'option_id'); /** @var array(int => string) $primary */
+		/** @var array(int => string[]) $tones */
+		$tones = array_map('array_filter', array_map('df_json_decode', array_column($d, Schema::F, 'option_id')));
+		$r = [];
+		foreach ($primary as $id => $v) { /** @var int $id */ /** @var string $v */
+			$r[$id]	= array_map('df_hex2rgb', array_merge([$v], dfa($tones, $id, [])));
+		}
+		return $r;
+	});}
 
 	/**
 	 * 2019-08-22
