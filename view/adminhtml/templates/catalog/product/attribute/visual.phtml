@@ -1,13 +1,7 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
-// @codingStandardsIgnoreFile
-
+use Dfe\Color\Params as P;
+use Dfe\Color\Setup\UpgradeSchema as S;
 /** @var $block \Magento\Swatches\Block\Adminhtml\Attribute\Edit\Options\Visual */
-
 $stores = $block->getStoresSortedBySortOrder();
 ?>
 <fieldset class="admin__fieldset fieldset">
@@ -93,18 +87,18 @@ $stores = $block->getStoresSortedBySortOrder();
 			</td>
 <!-- 2019-08-23 BEGIN -->
 			<td class="swatches-visual-col col-default dfe-color <%- data.empty_class %>">
-				<?php foreach([1, 2, 3, 4, 5] as $i) { ?>
+				<?php for ($i = 0; $i < P::COUNT; $i++) { ?>
 					<div>
 						<input
 							id="swatch_visual_value_a<?= $i ?>_<%- data.id %>"
 							name="swatchvisual[value_a<?= $i ?>][<%- data.id %>]"
 							type="hidden"
-							value="<%- data.defaultswatch0_a<?= $i ?> %>"
+							value="<%- data.<?= S::F ?>[<?= $i ?>] %>"
 						/>
 						<div
 							class="swatch_window"
 							id="swatch_window_option_a<?= $i ?>_<%- data.id %>"
-							style="<%- data.swatch0_a<?= $i ?> %>"
+							style="background: <%- data.<?= S::F ?>[<?= $i ?>] %>"
 						></div>
 						<div
 							class="swatch_sub-menu_container"
