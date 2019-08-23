@@ -23,7 +23,9 @@ final class ProductSaveBefore implements ObserverInterface {
 			/** @var string $path */
 			$path = df_trim_text_right(df_path_n($p['image']), '.tmp');
 			if ($path !== df_path_n($p->getOrigData('image'))) {
-				$image = new Image(df_product_image_tmp_path_absolute($path)); /** @var Image $image */
+				$full1 = df_product_image_path_absolute($path); /** @var string $full1 */
+				$full2 = df_product_image_tmp_path_absolute($path); /** @var string $full1 */
+				$image = new Image(file_exists($full1) ? $full1 : $full2); /** @var Image $image */
 				$p['color'] = df_first_key($image->probabilities());
 			}
 		}
