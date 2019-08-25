@@ -13,7 +13,7 @@ final class Image {
 	 * @used-by vendor/mage2pro/color/view/frontend/templates/index.phtml
 	 * @return array(string => string)
 	 */
-	function labels() {return /*array_filter*/(df_map_kr($this->probabilities(), function($k, $v) {return [
+	function labels() {return array_filter(df_map_kr($this->probabilities(), function($k, $v) {return [
 		self::optsM()[$k], dff_eq0($v) ? 0 : dff_2f($v)
 	];}));}
 
@@ -32,7 +32,7 @@ final class Image {
 			$co = $ci->getColor(); /** @var Color $co */
 			return 250 * 3 > $co->getRed() + $co->getGreen() + $co->getBlue();
 		})) ?: [$ciaAll[0]]; /** @var ColorInfo[] $cia */
-		return /*self::softmaxNeg*/(df_sort(df_map(self::palette(), function(array $cc) use($cia) {return
+		return self::softmaxNeg(df_sort(df_map(self::palette(), function(array $cc) use($cia) {return
 			self::dist($cia, $cc)
 		;})));
 	});}
