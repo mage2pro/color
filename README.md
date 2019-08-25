@@ -16,6 +16,8 @@ The sandbox will show what the module thinks about the images colors:
 ![](https://mage2.pro/uploads/default/original/2X/5/547942b73174491bcd7b8de56e5975ca8d087e38.png)  
 Please note that the module uses only color of the `color` Magento product attribute, so to make the module operate more colors, just add more swatches to the `color` attribute.
 
+The module requires [Google Application credentials](https://cloud.google.com/vision/docs/quickstart-client-libraries). Put them to the `app/etc/google-app-credentials.json` file.
+
 ## How to buy
 You can buy it with PayPal [here](https://mage2.pro/t/6009).  
 
