@@ -3,6 +3,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd"
 >
+<!-- 2019-09-20
+1) "The color analysis is not triggered when an image is imported via CSV": https://github.com/mage2pro/color/issues/2
+2) The event is triggered by:
+2.1) \Magento\CatalogImportExport\Model\Import\Product::_saveProducts():
+	$this->_eventManager->dispatch('catalog_product_import_bunch_save_after', [
+		'adapter' => $this, 'bunch' => $bunch
+	]);
+https://github.com/magento/magento2/blob/2.3.2/app/code/Magento/CatalogImportExport/Model/Import/Product.php#L1979-L1982
+2.2) \Firebear\ImportExport\Model\Import\Product::saveProducts():
+	$this->_eventManager->dispatch('catalog_product_import_bunch_save_after', [
+		'adapter' => $this, 'bunch' => $nextBunch
+	]);
+-->
+	<event name='catalog_product_import_bunch_save_after'>
+		<observer
+			instance='Dfe\Color\Observer\ProductImportBunchSaveAfter'
+			name='Dfe\Color\Observer\ProductImportBunchSaveAfter'
+		/>
+	</event>		
 <!-- 2019-08-21 -->
 	<event name='catalog_product_save_before'>
 		<observer
