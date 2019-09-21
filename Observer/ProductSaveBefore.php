@@ -17,12 +17,14 @@ final class ProductSaveBefore implements ObserverInterface {
 	 * @param O $o
 	 */
 	function execute(O $o) {
-		// 2019-08-21 A new image path can start with `//` because of a Magento 2 core bug.
+		$p = $o['product']; /** @var P $p */
 		if (
-			!df_product_type_composite($p = $o['product']) && $p['color'] === $p->getOrigData('color')
+			// 2019-09-22 I have removed the `!df_product_type_composite($p)` condition.
+			$p['color'] === $p->getOrigData('color')
+			// 2019-08-21 A new image path can start with `//` because of a Magento 2 core bug.
 			&& ($path = df_trim_text_right(df_path_n($p['image']), '.tmp')) !== df_path_n($p->getOrigData('image'))
 		) {
-			/** @var P $p */ /** @var string $path */
+			/** @var string $path */
 			$full1 = df_product_image_path2abs($path); /** @var string $full1 */
 			$full2 = df_product_image_tmp_path2abs($path); /** @var string $full1 */
 			$image = new Image(file_exists($full1) ? $full1 : $full2); /** @var Image $image */

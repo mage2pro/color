@@ -31,11 +31,9 @@ final class ProductImportBunchSaveAfter implements ObserverInterface {
 		$sep = $adapter->getMultipleValueSeparator(); /** @var string $sep */
 		$action = df_product_action(); /** @var Action $action */
 		foreach(df_eta($o['bunch']) as $d) { /** @var array(string => string $d) */
-			if (
-				!isset($d['color']) && isset($d['base_image'])
-				&& !df_product_type_composite($pBase = df_product_r()->get($sku = df_assert(dfa($d, 'sku'))))
-			) {
+			if (!isset($d['color']) && isset($d['base_image'])) {
 				/** @var P $pBase */ /** @var string $sku */
+				$pBase = df_product_r()->get($sku = df_assert(dfa($d, 'sku')));
 				$image = new Image(df_product_image_path($pBase, 'image')); /** @var Image $image */
 				$color = df_first_key($image->probabilities());	/** @var int $color */
 				/**
