@@ -108,9 +108,7 @@ final class Image {
 	 * @used-by palette()
 	 * @return array(array(string => int|string))
 	 */
-	private static function opts() {return dfcf(function() {return
-		df_product_att('color')->getSource()->getAllOptions(false)
-	;});}
+	private static function opts() {return df_product_att_options('color');}
 
 	/**
 	 * 2019-08-22

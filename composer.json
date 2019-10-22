@@ -1,6 +1,6 @@
 {
 	"name": "mage2pro/color"
-	,"version": "1.0.7"
+	,"version": "1.0.8"
 	,"description": "A product image color categorization module for Magento 2"
 	,"type": "magento2-module"
 	,"homepage": "https://mage2.pro/c/extensions/color"
@@ -11,7 +11,7 @@
 		,"homepage": "https://mage2.pro/users/dmitry_fedyuk"
 		,"role": "Developer"
 	}]
-	,"require": {"google/cloud-vision": "*", "mage2pro/core": ">=5.2.7"}
+	,"require": {"google/cloud-vision": "*", "mage2pro/core": ">=5.4.0"}
 	,"autoload": {"files": ["registration.php"], "psr-4": {"Dfe\\Color\\": ""}}
 	,"keywords": [
 		"eCommerce"
