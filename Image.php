@@ -115,9 +115,9 @@ final class Image {
 	 * @used-by labels()
 	 * @return array(int => string)
 	 */
-	private static function optsM() {return dfcf(function() {return
-		array_map('strtolower', array_column(self::opts(), 'label', 'value'))
-	;});}
+	private static function optsM() {return dfcf(function() {return array_map('strtolower', array_column(
+		self::opts(), 'label', 'value')
+	);});}
 
 	/**
 	 * 2019-08-22
