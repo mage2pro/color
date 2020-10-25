@@ -43,15 +43,7 @@ final class Image {
 	 * @used-by vendor/mage2pro/color/view/frontend/templates/index.phtml
 	 * @param string $path
 	 */
-	function __construct($path) {
-		dfcf(function() {
-			// 2019-08-21
-			// https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/v0.107.1/guides/authentication
-			// https://github.com/googleapis/google-auth-library-php/tree/v1.5.2#application-default-credentials
-			putenv('GOOGLE_APPLICATION_CREDENTIALS=' . df_fs_etc('google-app-credentials.json'));
-		});
-		$this->_path = $path;
-	}
+	function __construct($path) {$this->_path = $path; df_google_init_service_account();}
 
 	/**
 	 * 2019-08-22
