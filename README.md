@@ -1,4 +1,5 @@
 A product image color categorization module for Magento 2.  
+The module is **free** and **open source**.  
 It uses the Google's [Cloud Vision API](https://cloud.google.com/vision) (based on deep learning) to [detect the dominant color](https://cloud.google.com/vision/docs/detecting-properties) of a product's primary image, and then it automatically assigns the proper [color swatch](https://docs.magento.com/m2/ce/user_guide/catalog/swatches.html) to the product.
 
 When a product is saved, the module checks whether the product is a configurable child.  
@@ -18,22 +19,26 @@ Please note that the module uses only color of the `color` Magento product attri
 
 The module requires [Google Application credentials](https://cloud.google.com/vision/docs/quickstart-client-libraries). Put them to the `app/etc/google-app-credentials.json` file.
 
-## How to buy
-You can buy it with PayPal [here](https://mage2.pro/t/6009).  
-
 ## How to install
+[Hire me in Upwork](https://www.upwork.com/fl/mage2pro), and I will: 
+- install and configure the module properly on your website
+- answer your questions
+- solve compatiblity problems with third-party checkout, shipping, marketing modules
+- implement new features you need 
+
+### 2. Self-installation
 ```
 bin/magento maintenance:enable
-rm -r composer.lock
+rm -f composer.lock
 composer clear-cache
 composer require mage2pro/color:*
 bin/magento setup:upgrade
+bin/magento cache:enable
 rm -rf var/di var/generation generated/code
 bin/magento setup:di:compile
 rm -rf pub/static/*
-bin/magento setup:static-content:deploy -f en_US <additional locales, e.g.: de_DE>
+bin/magento setup:static-content:deploy -f en_US <additional locales>
 bin/magento maintenance:disable
-bin/magento cache:enable
 ```
 
 ## How to upgrade
@@ -47,23 +52,7 @@ bin/magento setup:upgrade
 rm -rf var/di var/generation generated/code
 bin/magento setup:di:compile
 rm -rf pub/static/*
-bin/magento setup:static-content:deploy -f en_US <additional locales, e.g.: de_DE>
+bin/magento setup:static-content:deploy -f en_US <additional locales>
 bin/magento maintenance:disable
 bin/magento cache:enable
 ```
-
-If you have problems with these commands, please check the [detailed instruction](https://mage2.pro/t/263).
-
-## Licensing
-It is a paid extension, not free.  
-You can use it for free for the testing puproses only.  
-Please read the [testing policy](https://mage2.pro/t/2590) before installation.
-
-## Support
-- [The extension's **forum** branch](https://mage2.pro/c/extensions/color).
-- [Where and how to report a Mage2.PRO extension's issue?](https://mage2.pro/t/2034)
-- I also provide a **[generic Magento 2 support](https://mage2.pro/t/755)** and [Magento 2 installation service](https://mage2.pro/t/748).
-
-## Want to be notified about the extension's updates?
-- [Subscribe](https://mage2.pro/t/2540) to the extension's [forum branch](https://mage2.pro/c/extensions/color).
-- Subscribe to my [Twitter](https://twitter.com/mage2_pro) and [YouTube](https://www.youtube.com/channel/UCvlDAZuj01_b92pzRi69LeQ) channels.
