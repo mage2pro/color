@@ -24,7 +24,7 @@ You can buy it with PayPal [here](https://mage2.pro/t/6009).
 ## How to install
 ```
 bin/magento maintenance:enable
-rm -rf composer.lock
+rm -r composer.lock
 composer clear-cache
 composer require mage2pro/color:*
 bin/magento setup:upgrade
@@ -40,7 +40,7 @@ bin/magento cache:enable
 ```
 bin/magento maintenance:enable
 composer remove mage2pro/color
-rm -rf composer.lock
+rm -r composer.lock
 composer clear-cache
 composer require mage2pro/color:*
 bin/magento setup:upgrade
