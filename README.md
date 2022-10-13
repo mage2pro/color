@@ -45,7 +45,7 @@ bin/magento maintenance:disable
 ```
 bin/magento maintenance:enable
 composer remove mage2pro/color
-rm -r composer.lock
+rm -f composer.lock
 composer clear-cache
 composer require mage2pro/color:*
 bin/magento setup:upgrade
