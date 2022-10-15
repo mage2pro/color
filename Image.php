@@ -50,9 +50,8 @@ final class Image {
 	 * @used-by probabilities()
 	 * @return Dominant
 	 */
-	private function dominant() {return dfc($this, function() {
-		/** @var Dominant $r */
-		$f = file_get_contents($this->_path); /** @var string $f */
+	private function dominant() {return dfc($this, function() {/** @var Dominant $r */
+		$f = df_file_read($this->_path); /** @var string $f */
 		$k = md5($f . __CLASS__); /** @var string $k */
 		$useCache = true;
 		if ($useCache && false !== ($json = df_cache_load($k))) { /** @var string|bool $resultS */
