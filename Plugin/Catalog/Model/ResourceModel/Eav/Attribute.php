@@ -24,8 +24,8 @@ final class Attribute {
 
 	/**
 	 * 2019-08-23
-	 * @used-by a()
-	 * @used-by beforeBeforeSave()
+	 * @used-by self::a()
+	 * @used-by self::beforeBeforeSave()
 	 * @var Sb
 	 */
 	private static $_a;

@@ -1,6 +1,6 @@
 <?php
 namespace Dfe\Color;
-// 2019-08-22 https://github.com/renasboy/php-color-difference
+# 2019-08-22 https://github.com/renasboy/php-color-difference
 final class Diff {
 	/**
 	 * 2019-08-22
@@ -59,7 +59,7 @@ final class Diff {
 
 	/**
 	 * 2019-08-22
-	 * @used-by p()
+	 * @used-by self::p()
 	 * @param int[] $rgb
 	 * @return array
 	 */

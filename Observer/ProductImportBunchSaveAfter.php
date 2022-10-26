@@ -50,9 +50,8 @@ final class ProductImportBunchSaveAfter implements ObserverInterface {
 				 *	}
 				 * https://github.com/magento/magento2/blob/2.3.2/app/code/Magento/CatalogImportExport/Model/Import/Product.php#L1725-L1732
 				 */
-				;
+				/** @var string|null $websitesS */
 				$storeIds = !($websitesS = dfa($d, Import::COL_PRODUCT_WEBSITES)) ? [null] :
-					/** @var string|null $websitesS */
 					array_unique(df_int(dfa_flatten(df_map(function($websiteC) use($sep) {return
 						df_store_m()->getStoreByWebsiteId(df_ie_store_r()->getWebsiteCodeToId($websiteC))
 					;}, explode($sep, $websitesS)))))

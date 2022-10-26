@@ -19,7 +19,7 @@ final class Image {
 
 	/**
 	 * 2019-08-22
-	 * @used-by labels()
+	 * @used-by self::labels()
 	 * @used-by \Dfe\Color\Observer\ProductSaveBefore::execute()
 	 * @return array(int => float)
 	 */
@@ -47,7 +47,7 @@ final class Image {
 
 	/**
 	 * 2019-08-22
-	 * @used-by probabilities()
+	 * @used-by self::probabilities()
 	 * @return Dominant
 	 */
 	private function dominant() {return dfc($this, function() {/** @var Dominant $r */
@@ -72,15 +72,15 @@ final class Image {
 
 	/**
 	 * 2019-08-22
-	 * @used-by __construct()
-	 * @used-by dominant()
+	 * @used-by self::__construct()
+	 * @used-by self::dominant()
 	 * @var string
 	 */
 	private $_path;
 
 	/**
 	 * 2019-08-21
-	 * @used-by probabilities()
+	 * @used-by self::probabilities()
 	 * @param ColorInfo[] $cia
 	 * @param int[][] $cc
 	 * @return float
@@ -95,15 +95,15 @@ final class Image {
 
 	/**
 	 * 2019-08-22
-	 * @used-by optsM()
-	 * @used-by palette()
+	 * @used-by self::optsM()
+	 * @used-by self::palette()
 	 * @return array(array(string => int|string))
 	 */
 	private static function opts() {return df_product_att_options('color');}
 
 	/**
 	 * 2019-08-22
-	 * @used-by labels()
+	 * @used-by self::labels()
 	 * @return array(int => string)
 	 */
 	private static function optsM() {return dfcf(function() {return array_map('strtolower', array_column(
@@ -112,7 +112,7 @@ final class Image {
 
 	/**
 	 * 2019-08-22
-	 * @used-by probabilities()
+	 * @used-by self::probabilities()
 	 * @return array(array(string => int|string))
 	 */
 	private static function palette() {return dfcf(function() {
@@ -130,7 +130,7 @@ final class Image {
 
 	/**
 	 * 2019-08-22
-	 * @used-by probabilities()
+	 * @used-by self::probabilities()
 	 * @param array(int|string => float) $a
 	 * @return array(int|string => float)
 	 */
