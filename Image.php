@@ -131,7 +131,7 @@ final class Image {
 	 * @param array(int|string => float) $a
 	 * @return array(int|string => float)
 	 */
-	private static function softmaxNeg(array $a) {
+	private static function softmaxNeg(array $a):array {
 		$a = array_map(function($v) {return exp(-$v);}, $a);
 		if (!array_filter($a)) {
 			$r = $a;
