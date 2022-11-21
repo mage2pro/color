@@ -9,9 +9,8 @@ final class Swatch {
 	/**
 	 * 2019-08-23
 	 * @see \Magento\Swatches\Model\Plugin\EavAttribute::saveSwatchData()
-	 * @param Sb $sb
 	 */
-	function beforeBeforeSave(Sb $sb) {
+	function beforeBeforeSave(Sb $sb):void {
 		if (
 			($a = Plugin::a()) /** @var A $a */
 			// 2019-08-23 The `[]` syntax does not support `/`, so I use `getData()`.
