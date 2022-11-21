@@ -14,9 +14,8 @@ final class ProductSaveBefore implements ObserverInterface {
 	 * @used-by \Magento\Framework\Event\Invoker\InvokerDefault::_callObserverMethod()
 	 * @used-by \Magento\Framework\Model\AbstractModel::beforeSave():
 	 * 		$this->_eventManager->dispatch($this->_eventPrefix . '_save_before', $this->_getEventData());
-	 * @param O $o
 	 */
-	function execute(O $o) {
+	function execute(O $o):void {
 		$p = $o['product']; /** @var P $p */
 		if (
 			// 2019-09-22 I have removed the `!df_product_type_composite($p)` condition.
