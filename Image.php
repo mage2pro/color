@@ -13,7 +13,7 @@ final class Image {
 	 * @used-by vendor/mage2pro/color/view/frontend/templates/index.phtml
 	 * @return array(string => string)
 	 */
-	function labels() {return array_filter(df_map_kr($this->probabilities(), function($k, $v) {return [
+	function labels():array {return array_filter(df_map_kr($this->probabilities(), function($k, $v) {return [
 		self::optsM()[$k], dff_eq0($v) ? 0 : dff_2f($v)
 	];}));}
 
