@@ -7,9 +7,8 @@ final class Attribute {
 	 * 2019-08-23
 	 * @see \Magento\Swatches\Model\Plugin\EavAttribute::beforeBeforeSave()
 	 * @see \Magento\Catalog\Model\ResourceModel\Eav\Attribute::beforeSave()
-	 * @param Sb $sb
 	 */
-	function beforeBeforeSave(Sb $sb) {
+	function beforeBeforeSave(Sb $sb):void {
 		if (df_swatches_h()->isVisualSwatch($sb)) {
 			self::$_a = $sb;
 		}
