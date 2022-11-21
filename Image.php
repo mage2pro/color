@@ -41,9 +41,8 @@ final class Image {
 	 * 2019-08-22
 	 * @used-by \Dfe\Color\Observer\ProductSaveBefore::execute()
 	 * @used-by vendor/mage2pro/color/view/frontend/templates/index.phtml
-	 * @param string $path
 	 */
-	function __construct($path) {$this->_path = $path; df_google_init_service_account();}
+	function __construct(string $path) {$this->_path = $path; df_google_init_service_account();}
 
 	/**
 	 * 2019-08-22
