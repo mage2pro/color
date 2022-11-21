@@ -24,9 +24,8 @@ final class ProductImportBunchSaveAfter implements ObserverInterface {
 	 * 		$this->_eventManager->dispatch('catalog_product_import_bunch_save_after', [
 	 * 			'adapter' => $this, 'bunch' => $nextBunch
 	 * 		]);
-	 * @param O $o
 	 */
-	function execute(O $o) {
+	function execute(O $o):void {
 		$adapter = $o['adapter']; /** @var Import $adapter */
 		$sep = $adapter->getMultipleValueSeparator(); /** @var string $sep */
 		$action = df_product_action(); /** @var Action $action */
