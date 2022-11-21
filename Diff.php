@@ -63,7 +63,11 @@ final class Diff {
 	 */
 	private static function _rgb2lab(array $rgb):array {return self::_xyz2lab(self::_rgb2xyz($rgb));}
 
-	private static function _rgb2xyz ($rgb) {
+	/**
+	 * @param $rgb
+	 * @return float[]
+	 */
+	private static function _rgb2xyz($rgb):array {
 		list($r, $g, $b) = $rgb;
 		$r = $r <= 0.04045 ? $r / 12.92 : pow(($r + 0.055) / 1.055, 2.4);
 		$g = $g <= 0.04045 ? $g / 12.92 : pow(($g + 0.055) / 1.055, 2.4);
