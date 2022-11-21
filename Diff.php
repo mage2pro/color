@@ -7,9 +7,8 @@ final class Diff {
 	 * @used-by \Dfe\Color\Image::dist()
 	 * @param int[] $rgb1
 	 * @param int[] $rgb2
-	 * @return float
 	 */
-	static function p(array $rgb1, array $rgb2) {
+	static function p(array $rgb1, array $rgb2):float {
 		list($l1, $a1, $b1) = self::_rgb2lab($rgb1);
 		list($l2, $a2, $b2) = self::_rgb2lab($rgb2);
 		$avg_lp     = ($l1 + $l2) / 2;
