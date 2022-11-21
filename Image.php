@@ -96,7 +96,7 @@ final class Image {
 	 * @used-by self::palette()
 	 * @return array(array(string => int|string))
 	 */
-	private static function opts() {return df_product_att_options('color');}
+	private static function opts():array {return df_product_att_options('color');}
 
 	/**
 	 * 2019-08-22
