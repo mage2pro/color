@@ -81,9 +81,8 @@ final class Image {
 	 * @used-by self::probabilities()
 	 * @param ColorInfo[] $cia
 	 * @param int[][] $cc
-	 * @return float
 	 */
-	private static function dist(array $cia, array $cc) {
+	private static function dist(array $cia, array $cc):float {
 		$ci = df_first($cia); /** @var ColorInfo $ci */
 		return min(df_map($cc, function($tone) use($ci) {
 			$co = $ci->getColor(); /** @var Color $co */
