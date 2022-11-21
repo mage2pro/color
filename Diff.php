@@ -60,9 +60,8 @@ final class Diff {
 	 * 2019-08-22
 	 * @used-by self::p()
 	 * @param int[] $rgb
-	 * @return array
 	 */
-	private static function _rgb2lab(array $rgb) {return self::_xyz2lab(self::_rgb2xyz($rgb));}
+	private static function _rgb2lab(array $rgb):array {return self::_xyz2lab(self::_rgb2xyz($rgb));}
 
 	private static function _rgb2xyz ($rgb) {
 		list($r, $g, $b) = $rgb;
