@@ -10,7 +10,7 @@ class UpgradeSchema extends \Df\Framework\Upgrade\Schema {
 	 * @see \Df\Framework\Upgrade::_process()
 	 * @used-by \Df\Framework\Upgrade::process()
 	 */
-	final protected function _process() {
+	final protected function _process():void {
 		if ($this->v('0.0.2')) {
 			df_db_column_add('eav_attribute_option_swatch', self::F, T::textLong('[mage2pro/color] Additional swatches'));
 		}
