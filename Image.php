@@ -47,9 +47,8 @@ final class Image {
 	/**
 	 * 2019-08-22
 	 * @used-by self::probabilities()
-	 * @return Dominant
 	 */
-	private function dominant() {return dfc($this, function() {/** @var Dominant $r */
+	private function dominant():Dominant {return dfc($this, function() {/** @var Dominant $r */
 		$f = df_file_read($this->_path); /** @var string $f */
 		$k = md5($f . __CLASS__); /** @var string $k */
 		$useCache = true;
