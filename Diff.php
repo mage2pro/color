@@ -79,10 +79,15 @@ final class Diff {
 		$x = $r * 0.412453 + $g * 0.357580 + $b * 0.180423;
 		$y = $r * 0.212671 + $g * 0.715160 + $b * 0.072169;
 		$z = $r * 0.019334 + $g * 0.119193 + $b * 0.950227;
-		return [ $x, $y, $z];
+		return [$x, $y, $z];
 	}
 
-	private static function _xyz2lab ($xyz) {
+	/**
+	 * @used-by self::_rgb2lab()
+	 * @param float[] $xyz
+	 * @return float[]
+	 */
+	private static function _xyz2lab(array $xyz):array {
 		list ($x, $y, $z) = $xyz;
 		$x /= 95.047;
 		$y /= 100;
