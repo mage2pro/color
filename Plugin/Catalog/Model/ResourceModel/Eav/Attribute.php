@@ -17,9 +17,8 @@ final class Attribute {
 	/**
 	 * 2019-08-23
 	 * @used-by \Dfe\Color\Plugin\Swatches\Model\Swatch::beforeBeforeSave()
-	 * @return Sb
 	 */
-	static function a() {return self::$_a;}
+	static function a():Sb {return self::$_a;}
 
 	/**
 	 * 2019-08-23
