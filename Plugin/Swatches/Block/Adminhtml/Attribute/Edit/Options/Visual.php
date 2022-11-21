@@ -9,11 +9,8 @@ final class Visual {
 	/**
 	 * 2019-08-23
 	 * @see \Magento\Swatches\Block\Adminhtml\Attribute\Edit\Options\Visual::getJsonConfig()
-	 * @param Sb $sb
-	 * @param string $r
-	 * @return string
 	 */
-	function afterGetJsonConfig(Sb $sb, $r) {
+	function afterGetJsonConfig(Sb $sb, string $r):string {
 		// 2019-08-23 df_json_decode() does not work here
 		$a = json_decode($r, true); /** @var array(string => mixed) $a */
 		$k = 'attributesData'; /** @var string $k */
