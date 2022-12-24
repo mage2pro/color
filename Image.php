@@ -23,7 +23,7 @@ final class Image {
 	 * @used-by \Dfe\Color\Observer\ProductSaveBefore::execute()
 	 * @return array(int => float)
 	 */
-	function probabilities():array {return dfc($this, function() {
+	function probabilities():array {return dfc($this, function():array {
 		$ciaAll = iterator_to_array($this->dominant()->getColors()); /** @var ColorInfo[] $ciaAll */
 		// 2019-08-23
 		// Sometimes (rarely) Cloud Vision API wrongly considers a white background as the primary color.
