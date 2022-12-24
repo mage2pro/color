@@ -11,7 +11,7 @@ final class Image {
 	/**
 	 * 2019-08-22
 	 * @used-by vendor/mage2pro/color/view/frontend/templates/index.phtml
-	 * @return array(string => string)
+	 * @return array(string => float)
 	 */
 	function labels():array {return array_filter(df_map_kr($this->probabilities(), function(int $k, float $v):array {return [
 		self::optsM()[$k], dff_eq0($v) ? 0 : dff_2f($v)
