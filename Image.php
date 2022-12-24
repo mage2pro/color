@@ -138,7 +138,7 @@ final class Image {
 		}
 		else {
 			$f = 100 / array_sum($a); /** @var float $f */
-			$r = array_map(function ($v) use ($f) {return $v * $f;}, $a);
+			$r = array_map(function(float $v) use ($f) {return $v * $f;}, $a);
 		}
 		return $r;
 	}
