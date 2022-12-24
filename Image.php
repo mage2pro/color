@@ -32,7 +32,7 @@ final class Image {
 			$co = $ci->getColor(); /** @var Color $co */
 			return 250 * 3 > $co->getRed() + $co->getGreen() + $co->getBlue();
 		})) ?: [$ciaAll[0]]; /** @var ColorInfo[] $cia */
-		return self::softmaxNeg(df_sort(df_map(self::palette(), function(array $cc) use($cia) {return
+		return self::softmaxNeg(df_sort(df_map(self::palette(), function(array $cc) use($cia):float {return
 			self::dist($cia, $cc)
 		;})));
 	});}
