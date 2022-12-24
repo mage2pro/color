@@ -7,7 +7,7 @@ echo df_tag('div', 'dfe-color', implode(df_map(array_slice(scandir($dir), 2), fu
 	$i = new I(df_media_path_absolute("$folder/$c"));
 	return df_tag('div', [], [
 		df_tag('a', ['title' => $c, 'url' => $url], df_tag('img', ['src' => $url]))
-		,df_tag('ol', [], implode(df_map_k($i->labels(), function($l, $v):string {return df_tag('li', [], [
+		,df_tag('ol', [], implode(df_map_k($i->labels(), function(string $l, $v):string {return df_tag('li', [], [
 			df_tag('span', [], $l), df_tag('span', [], "$v%")
 		]);})))
 	]);
