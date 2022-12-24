@@ -103,7 +103,7 @@ final class Image {
 	 * @used-by self::labels()
 	 * @return array(int => string)
 	 */
-	private static function optsM():array {return dfcf(function() {return array_map('strtolower', array_column(
+	private static function optsM():array {return dfcf(function():array {return array_map('strtolower', array_column(
 		self::opts(), 'label', 'value')
 	);});}
 
