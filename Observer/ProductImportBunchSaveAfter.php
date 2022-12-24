@@ -51,7 +51,7 @@ final class ProductImportBunchSaveAfter implements ObserverInterface {
 				 */
 				/** @var string|null $websitesS */
 				$storeIds = !($websitesS = dfa($d, Import::COL_PRODUCT_WEBSITES)) ? [null] :
-					array_unique(df_int(dfa_flatten(df_map(function($websiteC) use($sep) {return
+					array_unique(df_int(dfa_flatten(df_map(function(string $websiteC) use($sep) {return
 						df_store_m()->getStoreByWebsiteId(df_ie_store_r()->getWebsiteCodeToId($websiteC))
 					;}, explode($sep, $websitesS)))))
 				; /** @var array(int|null) $storeIds */
