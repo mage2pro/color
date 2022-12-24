@@ -25,9 +25,9 @@ final class Image {
 	 */
 	function probabilities():array {return dfc($this, function():array {
 		$ciaAll = iterator_to_array($this->dominant()->getColors()); /** @var ColorInfo[] $ciaAll */
-		// 2019-08-23
-		// Sometimes (rarely) Cloud Vision API wrongly considers a white background as the primary color.
-		// So I filter out all colors close to white.
+		# 2019-08-23
+		# Sometimes (rarely) Cloud Vision API wrongly considers a white background as the primary color.
+		# So I filter out all colors close to white.
 		$cia = array_values(array_filter($ciaAll, function(ColorInfo $ci) {
 			$co = $ci->getColor(); /** @var Color $co */
 			return 250 * 3 > $co->getRed() + $co->getGreen() + $co->getBlue();
