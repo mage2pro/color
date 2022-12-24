@@ -112,7 +112,7 @@ final class Image {
 	 * @used-by self::probabilities()
 	 * @return array(array(string => int|string))
 	 */
-	private static function palette():array {return dfcf(function() {
+	private static function palette():array {return dfcf(function():array {
 		/** @var array(int => array(string => string)) $d */
 		$d = df_swatches_h()->getSwatchesByOptionsId(df_int(array_column(self::opts(), 'value')));
 		$primary = array_column($d, 'value', 'option_id'); /** @var array(int => string) $primary */
