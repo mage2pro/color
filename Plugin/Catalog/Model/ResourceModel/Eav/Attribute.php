@@ -1,7 +1,7 @@
 <?php
 namespace Dfe\Color\Plugin\Catalog\Model\ResourceModel\Eav;
 use Magento\Catalog\Model\ResourceModel\Eav\Attribute as Sb;
-// 2019-08-23
+# 2019-08-23
 final class Attribute {
 	/**
 	 * 2019-08-23

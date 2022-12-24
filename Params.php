@@ -1,6 +1,6 @@
 <?php
 namespace Dfe\Color;
-// 2019-08-23
+# 2019-08-23
 interface Params {
 	/**
 	 * 2019-08-23

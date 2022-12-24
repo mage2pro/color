@@ -6,7 +6,7 @@ use Google\Cloud\Vision\V1\ColorInfo;
 use Google\Cloud\Vision\V1\DominantColorsAnnotation as Dominant;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient as Annotator;
 use Google\Type\Color;
-// 2019-08-22
+# 2019-08-22
 final class Image {
 	/**
 	 * 2019-08-22

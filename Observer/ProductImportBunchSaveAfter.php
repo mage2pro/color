@@ -6,9 +6,9 @@ use Magento\Catalog\Model\ResourceModel\Product\Action;
 use Magento\CatalogImportExport\Model\Import\Product as Import;
 use Magento\Framework\Event\Observer as O;
 use Magento\Framework\Event\ObserverInterface;
-// 2019-09-20
-// "The color analysis is not triggered when an image is imported via CSV":
-// https://github.com/mage2pro/color/issues/2
+# 2019-09-20
+# "The color analysis is not triggered when an image is imported via CSV":
+# https:#github.com/mage2pro/color/issues/2
 final class ProductImportBunchSaveAfter implements ObserverInterface {
 	/**
 	 * 2019-09-20
@@ -19,7 +19,7 @@ final class ProductImportBunchSaveAfter implements ObserverInterface {
 	 * 		$this->_eventManager->dispatch('catalog_product_import_bunch_save_after', [
 	 * 			'adapter' => $this, 'bunch' => $bunch
 	 * 		]);
-	 * https://github.com/magento/magento2/blob/2.3.2/app/code/Magento/CatalogImportExport/Model/Import/Product.php#L1979-L1982
+	 * https:#github.com/magento/magento2/blob/2.3.2/app/code/Magento/CatalogImportExport/Model/Import/Product.php#L1979-L1982
 	 * @used-by \Firebear\ImportExport\Model\Import\Product::saveProducts():
 	 * 		$this->_eventManager->dispatch('catalog_product_import_bunch_save_after', [
 	 * 			'adapter' => $this, 'bunch' => $nextBunch
@@ -47,7 +47,7 @@ final class ProductImportBunchSaveAfter implements ObserverInterface {
 				 *			$this->websitesCache[$rowSku][$websiteId] = true;
 				 *		}
 				 *	}
-				 * https://github.com/magento/magento2/blob/2.3.2/app/code/Magento/CatalogImportExport/Model/Import/Product.php#L1725-L1732
+				 * https:#github.com/magento/magento2/blob/2.3.2/app/code/Magento/CatalogImportExport/Model/Import/Product.php#L1725-L1732
 				 */
 				/** @var string|null $websitesS */
 				$storeIds = !($websitesS = dfa($d, Import::COL_PRODUCT_WEBSITES)) ? [null] :

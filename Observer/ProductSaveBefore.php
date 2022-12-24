@@ -5,7 +5,7 @@ use Magento\Catalog\Model\Product as P;
 use Magento\Framework\App\Filesystem\DirectoryList as DL;
 use Magento\Framework\Event\Observer as O;
 use Magento\Framework\Event\ObserverInterface;
-// 2019-08-21
+# 2019-08-21
 final class ProductSaveBefore implements ObserverInterface {
 	/**
 	 * 2019-08-21
@@ -18,9 +18,9 @@ final class ProductSaveBefore implements ObserverInterface {
 	function execute(O $o):void {
 		$p = $o['product']; /** @var P $p */
 		if (
-			// 2019-09-22 I have removed the `!df_product_type_composite($p)` condition.
+			# 2019-09-22 I have removed the `!df_product_type_composite($p)` condition.
 			$p['color'] === $p->getOrigData('color')
-			// 2019-08-21 A new image path can start with `//` because of a Magento 2 core bug.
+			# 2019-08-21 A new image path can start with `#` because of a Magento 2 core bug.
 			&& ($path = df_trim_text_right(df_path_n($p['image']), '.tmp')) !== df_path_n($p->getOrigData('image'))
 		) {
 			/** @var string $path */
