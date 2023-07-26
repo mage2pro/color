@@ -49,7 +49,7 @@ final class Image {
 	 * @used-by self::probabilities()
 	 */
 	private function dominant():Dominant {return dfc($this, function() {/** @var Dominant $r */
-		$f = df_file_read($this->_path); /** @var string $f */
+		$f = df_contents($this->_path); /** @var string $f */
 		$k = md5($f . __CLASS__); /** @var string $k */
 		$useCache = true;
 		if ($useCache && false !== ($json = df_cache_load($k))) { /** @var string|bool $resultS */
