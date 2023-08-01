@@ -21,7 +21,11 @@ final class ProductSaveBefore implements ObserverInterface {
 			# 2019-09-22 I have removed the `!df_product_type_composite($p)` condition.
 			$p['color'] === $p->getOrigData('color')
 			# 2019-08-21 A new image path can start with `#` because of a Magento 2 core bug.
-			&& ($path = df_trim_text_right(df_path_n($p['image']), '.tmp')) !== df_path_n($p->getOrigData('image'))
+			# 2023-08-01
+			# «df_path_n(): Argument #1 ($p) must be of type string, null given,
+			# called in vendor/mage2pro/color/Observer/ProductSaveBefore.php on line 24»:
+			# https://github.com/mage2pro/color/issues/4
+			&& ($path = df_trim_text_right(df_path_n($p['image']), '.tmp')) !== df_path_n(df_nts($p->getOrigData('image')))
 		) {
 			/** @var string $path */
 			$full1 = df_product_image_path2abs($path); /** @var string $full1 */
