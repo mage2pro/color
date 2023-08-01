@@ -2,7 +2,6 @@
 namespace Dfe\Color\Observer;
 use Dfe\Color\Image;
 use Magento\Catalog\Model\Product as P;
-use Magento\Framework\App\Filesystem\DirectoryList as DL;
 use Magento\Framework\Event\Observer as O;
 use Magento\Framework\Event\ObserverInterface;
 # 2019-08-21
