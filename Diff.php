@@ -9,8 +9,9 @@ final class Diff {
 	 * @param int[] $rgb2
 	 */
 	static function p(array $rgb1, array $rgb2):float {
-		list($l1, $a1, $b1) = self::_rgb2lab($rgb1);
-		list($l2, $a2, $b2) = self::_rgb2lab($rgb2);
+		# 2024-06-06 "Use the «Symmetric array destructuring» PHP 7.1 feature": https://github.com/mage2pro/core/issues/379
+		[$l1, $a1, $b1] = self::_rgb2lab($rgb1);
+		[$l2, $a2, $b2] = self::_rgb2lab($rgb2);
 		$avg_lp     = ($l1 + $l2) / 2;
 		$c1         = sqrt(pow($a1, 2) + pow($b1, 2));
 		$c2         = sqrt(pow($a2, 2) + pow($b2, 2));
